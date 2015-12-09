@@ -1006,7 +1006,11 @@ static void selinux_initialize(void)
     }
 
     selinux_init_all_handles();
+#ifndef MTK_HARDWARE
+    bool is_enforcing = false; // Always making selinux permissive for MTK's rild
+#else
     bool is_enforcing = selinux_is_enforcing();
+#endif
     INFO("SELinux: security_setenforce(%d)\n", is_enforcing);
     security_setenforce(is_enforcing);
 }
