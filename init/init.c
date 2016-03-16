@@ -1006,7 +1006,7 @@ static void selinux_initialize(void)
     }
 
     selinux_init_all_handles();
-#ifndef MTK_HARDWARE
+#ifdef MTK_HARDWARE
     bool is_enforcing = false; // Always making selinux permissive for MTK's rild
 #else
     bool is_enforcing = selinux_is_enforcing();
